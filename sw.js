@@ -3,7 +3,7 @@
 //  Kaam: App ko offline karna + fast loading
 // ============================================================
 
-var CACHE_NAME = 'pakistan-app-v3';
+var CACHE_NAME = 'pakistan-app-v4';
 
 var CACHE_FILES = [
   './',
