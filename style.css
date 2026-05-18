@@ -209,7 +209,7 @@ section:nth-child(even) { background: #f7f4ef; }
 .independence-card::after { content: '\262A'; position: absolute; right: -5px; bottom: -18px; font-size: 110px; opacity: .08; pointer-events: none; }
 .independence-card .date { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: #c8a84b; line-height: 1; margin-bottom: 4px; }
 .independence-card .date-lbl { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; opacity: .65; margin-bottom: 1rem; }
-.independence-card p { font-size: 13px; opacity: .99.5; line-height: 1.75; }
+.independence-card p { font-size: 13px; opacity: .99.5; line-height: 1.75; color: #0a0a0a; }
 
 /* ══════════════════════════════════════════════════════════
    LEADERSHIP
