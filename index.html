@@ -7,18 +7,48 @@
   <meta name="description" content="Complete guide to Pakistan – history, provinces, leaders, famous personalities, geography, economy and more." />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <link rel="icon" href="icon-192.png" type="image/png" />
+  <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+<!-- OVERLAY -->
+<div id="nav-overlay" onclick="closeDrawer()"></div>
+
+<!-- DRAWER -->
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <div class="drawer-logo">
+      <div class="nav-flag"><div class="wh"></div><div class="gr">☪</div></div>
+      <span>Pakistan</span>
+    </div>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <ul class="drawer-links">
+    <li><a href="#hero"          onclick="closeDrawer()">Home</a></li>
+    <li><a href="#about"         onclick="closeDrawer()">About</a></li>
+    <li><a href="#leadership"    onclick="closeDrawer()">Leadership</a></li>
+    <li><a href="#personalities" onclick="closeDrawer()">Personalities</a></li>
+    <li><a href="#provinces"     onclick="closeDrawer()">Provinces</a></li>
+    <li><a href="#geography"     onclick="closeDrawer()">Geography</a></li>
+    <li><a href="#economy"       onclick="closeDrawer()">Economy</a></li>
+    <li><a href="#military"      onclick="closeDrawer()">Military</a></li>
+    <li><a href="#culture"       onclick="closeDrawer()">Culture</a></li>
+    <li><a href="#languages"     onclick="closeDrawer()">Languages</a></li>
+    <li><a href="#religion"      onclick="closeDrawer()">Religion</a></li>
+    <li><a href="#weather-section"  onclick="closeDrawer()">Weather</a></li>
+    <li><a href="#currency-section" onclick="closeDrawer()">Currency</a></li>
+    <li><a href="#quiz-section"     onclick="closeDrawer()">Quiz</a></li>
+    <li><a href="#cricket-section"  onclick="closeDrawer()">Cricket</a></li>
+    <li><a href="#news-section"     onclick="closeDrawer()">News</a></li>
+  </ul>
+</div>
 
 <!-- NAVBAR -->
 <nav id="navbar">
   <div class="nav-inner">
     <a class="nav-brand" href="#hero">
-      <div class="nav-flag">
-        <div class="wh"></div>
-        <div class="gr">☪</div>
-      </div>
+      <div class="nav-flag"><div class="wh"></div><div class="gr">☪</div></div>
       <span>Pakistan</span>
     </a>
     <ul class="nav-links" id="nav-links">
@@ -36,8 +66,10 @@
       <li><a href="#weather-section">Weather</a></li>
       <li><a href="#currency-section">Currency</a></li>
       <li><a href="#quiz-section">Quiz</a></li>
+      <li><a href="#cricket-section">Cricket</a></li>
+      <li><a href="#news-section">News</a></li>
     </ul>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+    <button class="nav-toggle" id="nav-toggle" onclick="openDrawer()">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -50,19 +82,17 @@
     <div class="hero-eyebrow">Islamic Republic of Pakistan</div>
     <h1>Land of<br>the <em>Pure</em></h1>
     <p class="hero-sub">South Asia · Founded 1947 · 5th Most Populous</p>
-    <p class="hero-desc">
-      A nation of 241 million people, ancient civilisations, towering mountains, and deep cultural heritage — from the Indus Valley to K2, from Lahore's Mughal grandeur to Karachi's coastal energy.
-    </p>
+    <p class="hero-desc">A nation of 241 million people, ancient civilisations, towering mountains, and deep cultural heritage — from the Indus Valley to K2, from Lahore's Mughal grandeur to Karachi's coastal energy.</p>
     <div class="hero-stats">
       <div class="hero-stat"><div class="num">241M+</div><div class="lbl">Population</div></div>
       <div class="hero-stat"><div class="num">881,913</div><div class="lbl">km² Area</div></div>
       <div class="hero-stat"><div class="num">6</div><div class="lbl">Regions</div></div>
       <div class="hero-stat"><div class="num">70+</div><div class="lbl">Languages</div></div>
     </div>
-  </div>
-  <div class="pk-clock-wrap">
-    <div id="pk-clock" class="pk-clock">00:00:00 AM</div>
-    <div id="pk-date" class="pk-date">Loading...</div>
+    <div class="pk-clock-wrap">
+      <div id="pk-clock" class="pk-clock">00:00:00 AM</div>
+      <div id="pk-date" class="pk-date">Loading...</div>
+    </div>
   </div>
   <div class="hero-scroll">Scroll to explore</div>
 </section>
@@ -73,13 +103,13 @@
     <div class="fade-in">
       <span class="section-label">Overview</span>
       <h2 class="section-title">About Pakistan</h2>
-      <p class="section-desc">Officially the Islamic Republic of Pakistan — a sovereign nation in South Asia with rich history, diverse culture, and strategic importance in the region.</p>
+      <p class="section-desc">Officially the Islamic Republic of Pakistan — a sovereign nation in South Asia with rich history, diverse culture, and strategic importance.</p>
     </div>
     <div class="about-grid fade-in">
       <div class="about-text">
-        <p>Pakistan is the fifth-most populous country in the world, with a population exceeding 241 million. It has the world's second-largest Muslim population. Islamabad is the nation's capital, while Karachi serves as the largest city and financial hub.</p>
-        <p>The country covers an area of <strong>881,913 km²</strong>, making it the 33rd-largest by area. It is bounded by the Arabian Sea to the south, India to the east, Afghanistan and Iran to the west, and China to the northeast.</p>
-        <p>The word <em>Pakistan</em> means <strong>"Land of the Pure"</strong> — derived from <em>Pak</em> (pure) and <em>Stan</em> (land). The name was coined by Choudhry Rahmat Ali in 1933.</p>
+        <p>Pakistan is the fifth-most populous country with 241 million people and world's second-largest Muslim population. Capital: Islamabad. Largest city: Karachi.</p>
+        <p>Total area <strong>881,913 km²</strong> — 33rd largest. Bounded by Arabian Sea (south), India (east), Afghanistan &amp; Iran (west), China (northeast).</p>
+        <p><em>Pakistan</em> means <strong>"Land of the Pure"</strong> — from <em>Pak</em> (pure) + <em>Stan</em> (land). Name coined by Choudhry Rahmat Ali in 1933.</p>
         <div class="facts-table">
           <div class="fact-row"><span class="k">Official Name</span><span class="v">Islamic Republic of Pakistan</span></div>
           <div class="fact-row"><span class="k">Capital</span><span class="v">Islamabad</span></div>
@@ -102,7 +132,7 @@
         <div class="independence-card">
           <div class="date">14 August 1947</div>
           <div class="date-lbl">Independence Day — Youm-e-Azadi</div>
-          <p>Pakistan gained independence on the 27th of Ramadan 1366 AH. India gained independence the following day. Punjab and Bengal were divided along religious lines by the Radcliffe Commission. Pakistan became an Islamic Republic on <strong>23 March 1956</strong> — celebrated as Pakistan Day.</p>
+          <p>Pakistan gained independence on 27th Ramadan 1366 AH. Pakistan became an Islamic Republic on <strong>23 March 1956</strong> — celebrated as Pakistan Day.</p>
         </div>
       </div>
     </div>
@@ -124,9 +154,7 @@
       <p class="section-desc" style="margin-bottom:1.25rem;">Notable leaders who shaped Pakistan since independence.</p>
     </div>
     <div class="prev-table fade-in">
-      <div class="prev-table-head">
-        <span>Role</span><span>Name</span><span>Period</span><span>Party</span>
-      </div>
+      <div class="prev-table-head"><span>Role</span><span>Name</span><span>Period</span><span>Party</span></div>
       <div id="prev-leaders-body"></div>
     </div>
   </div>
@@ -138,7 +166,7 @@
     <div class="fade-in">
       <span class="section-label">Nation Builders &amp; Icons</span>
       <h2 class="section-title">Famous Personalities of Pakistan</h2>
-      <p class="section-desc">Great men and women who played a defining role in creating, building, and representing Pakistan on the world stage.</p>
+      <p class="section-desc">Great men and women who played a defining role in creating, building, and representing Pakistan.</p>
     </div>
     <div class="persons-grid" id="persons-grid"></div>
   </div>
@@ -162,34 +190,18 @@
     <div class="fade-in">
       <span class="section-label">Land &amp; Nature</span>
       <h2 class="section-title">Geography of Pakistan</h2>
-      <p class="section-desc">From the world's second highest peak to ancient deserts — Pakistan's geography is extraordinarily diverse.</p>
+      <p class="section-desc">From the world's second highest peak to ancient deserts — extraordinary diversity.</p>
     </div>
     <div class="geo-grid fade-in">
       <div class="geo-card"><h3>Mountain Ranges</h3><ul id="geo-mountains"></ul></div>
       <div class="geo-card"><h3>Major Rivers</h3><ul id="geo-rivers"></ul></div>
       <div class="geo-card"><h3>Deserts &amp; Resources</h3><ul id="geo-deserts"></ul><br><ul id="geo-resources"></ul></div>
-      <div class="geo-card geo-highlight"><h3>Famous Places &amp; Sites</h3><ul id="geo-places"></ul></div>
+      <div class="geo-card geo-highlight"><h3>Famous Places</h3><ul id="geo-places"></ul></div>
     </div>
     <div class="geo-grid geo-grid-3 fade-in" style="margin-top:1rem;">
-      <div class="geo-card">
-        <h3>Key Facts</h3>
-        <ul class="geo-list">
-          <li>Highest Point: K2 – 8,611 m</li>
-          <li>Coastline: 1,046 km</li>
-          <li>Monsoon Season: July – September</li>
-          <li>Salt Mine: Khewra – World's 2nd largest</li>
-        </ul>
-      </div>
+      <div class="geo-card"><h3>Key Facts</h3><ul class="geo-list"><li>Highest Point: K2 – 8,611 m</li><li>Coastline: 1,046 km</li><li>Monsoon: July – September</li><li>Khewra: World's 2nd largest salt mine</li></ul></div>
       <div class="geo-card"><h3>Bordering Countries</h3><ul id="geo-borders"></ul></div>
-      <div class="geo-card">
-        <h3>Area Breakdown</h3>
-        <ul class="geo-list">
-          <li>Total: <strong>881,913 km²</strong></li>
-          <li>Land: <strong>770,880 km²</strong></li>
-          <li>Water: <strong>25,220 km²</strong></li>
-          <li>World Rank: <strong>33rd</strong></li>
-        </ul>
-      </div>
+      <div class="geo-card"><h3>Area Breakdown</h3><ul class="geo-list"><li>Total: <strong>881,913 km²</strong></li><li>Land: <strong>770,880 km²</strong></li><li>Water: <strong>25,220 km²</strong></li><li>World Rank: <strong>33rd</strong></li></ul></div>
     </div>
   </div>
 </section>
@@ -200,7 +212,7 @@
     <div class="fade-in">
       <span class="section-label">Finance &amp; Trade</span>
       <h2 class="section-title">Economy of Pakistan</h2>
-      <p class="section-desc">Pakistan has a mixed economy with major sectors in agriculture, textiles, IT services, and CPEC energy projects.</p>
+      <p class="section-desc">Mixed economy with major sectors in agriculture, textiles, IT services, and CPEC energy projects.</p>
     </div>
     <div class="eco-grid fade-in" id="eco-stats"></div>
     <div class="eco-lists fade-in">
@@ -223,7 +235,7 @@
     <div class="fade-in">
       <span class="section-label">Defence &amp; Security</span>
       <h2 class="section-title">Military of Pakistan</h2>
-      <p class="section-desc">Pakistan has one of the world's most powerful militaries and is the only Muslim-majority nuclear state.</p>
+      <p class="section-desc">One of the world's most powerful militaries. Only Muslim-majority nuclear state.</p>
     </div>
     <div class="mil-grid" id="mil-grid"></div>
   </div>
@@ -235,7 +247,7 @@
     <div class="fade-in">
       <span class="section-label">Heritage &amp; Lifestyle</span>
       <h2 class="section-title">Culture of Pakistan</h2>
-      <p class="section-desc">Pakistan's culture is a beautiful blend of South Asian, Central Asian, and Persian influences.</p>
+      <p class="section-desc">A beautiful blend of South Asian, Central Asian, and Persian influences.</p>
     </div>
     <div class="culture-grid" id="culture-grid"></div>
   </div>
@@ -247,14 +259,14 @@
     <div class="fade-in">
       <span class="section-label">Linguistic Diversity</span>
       <h2 class="section-title">Languages of Pakistan</h2>
-      <p class="section-desc">Pakistan is home to over 70 languages, with Urdu as the national language and English as official.</p>
+      <p class="section-desc">Over 70 languages. Urdu is national, English is official.</p>
     </div>
     <div class="lang-grid fade-in">
       <div class="lang-list" id="lang-list"></div>
       <div class="lang-box">
         <h3>Urdu — قومی زبان</h3>
-        <p>Urdu is written in the beautiful Nastaliq calligraphic script — derived from Persian-Arabic, written right-to-left. It unifies over 70 linguistic groups and is the symbol of Pakistani national identity.</p>
-        <p>Pakistan has the world's second-largest Urdu-speaking population. Rich literary tradition of poetry, ghazals, and classical literature.</p>
+        <p>Nastaliq calligraphic script — Persian-Arabic origin, right-to-left. Symbol of Pakistani identity.</p>
+        <p>World's 2nd largest Urdu-speaking population. Rich tradition of poetry, ghazals, and literature.</p>
         <div class="urdu-sample">پاکستان زندہ باد</div>
         <div class="urdu-trans">Long Live Pakistan</div>
       </div>
@@ -268,26 +280,25 @@
     <div class="fade-in">
       <span class="section-label">Faith &amp; Identity</span>
       <h2 class="section-title">Religion in Pakistan</h2>
-      <p class="section-desc">Pakistan has the world's second-largest Muslim population. The constitution guarantees freedom of religion for all minority communities.</p>
+      <p class="section-desc">World's 2nd largest Muslim population. Constitution guarantees freedom of religion for all.</p>
     </div>
     <div class="rel-grid fade-in">
       <div class="rel-bars" id="rel-bars"></div>
       <div class="rel-side">
         <h3>Islam in Pakistan</h3>
-        <p class="rel-sub">Pakistan declared itself an Islamic Republic in 1956. Islam is deeply woven into law, governance, culture, and daily life.</p>
+        <p class="rel-sub">Islamic Republic since 1956. Islam woven into law, governance, and daily life.</p>
         <div class="rel-row"><span>Majority Sect</span><span>Sunni (~85%)</span></div>
         <div class="rel-row"><span>Shia Muslims</span><span>~15%</span></div>
         <div class="rel-row"><span>World Muslim Rank</span><span>2nd largest</span></div>
         <div class="rel-row"><span>State Religion</span><span>Islam (since 1956)</span></div>
         <div class="rel-row"><span>Minority Rights</span><span>Constitutionally guaranteed</span></div>
-        <div class="rel-row"><span>Mosques in Pakistan</span><span>300,000+</span></div>
+        <div class="rel-row"><span>Mosques</span><span>300,000+</span></div>
         <div class="rel-row"><span>Notable Mosque</span><span>Faisal Mosque, Islamabad</span></div>
-        <div class="rel-row"><span>Holy Pilgrimage</span><span>Makkah &amp; Madinah (Hajj)</span></div>
+        <div class="rel-row"><span>Holy Pilgrimage</span><span>Makkah &amp; Madinah</span></div>
       </div>
     </div>
   </div>
 </section>
-
 
 <!-- WEATHER -->
 <section id="weather-section">
@@ -332,6 +343,30 @@
   </div>
 </section>
 
+<!-- CRICKET -->
+<section id="cricket-section">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Live Scores</span>
+      <h2 class="section-title">Cricket Matches</h2>
+      <p class="section-desc">Pakistan aur duniya bhar ke cricket matches ke live scores.</p>
+    </div>
+    <div id="cricket-container" class="fade-in"></div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news-section">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Latest Updates</span>
+      <h2 class="section-title">Pakistan News</h2>
+      <p class="section-desc">Dawn, BBC Urdu aur Geo News se latest khabrein.</p>
+    </div>
+    <div id="news-container" class="fade-in"></div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-flag">🇵🇰</div>
@@ -348,6 +383,11 @@
     <a href="#culture">Culture</a>
     <a href="#languages">Languages</a>
     <a href="#religion">Religion</a>
+    <a href="#weather-section">Weather</a>
+    <a href="#currency-section">Currency</a>
+    <a href="#quiz-section">Quiz</a>
+    <a href="#cricket-section">Cricket</a>
+    <a href="#news-section">News</a>
   </nav>
 
   <div class="install-wrap" id="install-wrap">
@@ -385,48 +425,59 @@
 <script src="weather.js"></script>
 <script src="currency.js"></script>
 <script src="quiz.js"></script>
+<script src="cricket.js"></script>
+<script src="news.js"></script>
+
 <script>
+  // ── DRAWER ──────────────────────────────────────────────
+  function openDrawer() {
+    document.getElementById('drawer').classList.add('open');
+    document.getElementById('nav-overlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    document.getElementById('drawer').classList.remove('open');
+    document.getElementById('nav-overlay').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  // ── INSTALL ─────────────────────────────────────────────
   var deferredPrompt = null;
   var installWrap = document.getElementById('install-wrap');
   var installBtn  = document.getElementById('install-btn');
 
-  // Button hamesha visible rahega
-  if (installWrap) installWrap.style.display = 'block';
-
-  window.addEventListener('beforeinstallprompt', function (e) {
+  window.addEventListener('beforeinstallprompt', function(e) {
     e.preventDefault();
     deferredPrompt = e;
-    if (installWrap) installWrap.style.display = 'block';
   });
 
   if (installBtn) {
-    installBtn.addEventListener('click', function () {
+    installBtn.addEventListener('click', function() {
       if (deferredPrompt) {
-        // Browser install prompt dikhao
         deferredPrompt.prompt();
-        deferredPrompt.userChoice.then(function (result) {
+        deferredPrompt.userChoice.then(function(result) {
           if (result.outcome === 'accepted') {
             if (installWrap) installWrap.style.display = 'none';
           }
           deferredPrompt = null;
         });
       } else {
-        // Manual instructions dikhao
-        alert('App install karne ke liye:\n\n1. Chrome mein open karein\n2. Address bar ke daayein taraf 3 dots ( ⋮ ) click karein\n3. "Add to Home screen" ya "Install app" click karein');
+        alert('Install karne ke liye:\n\n1. Chrome mein open karein\n2. Upar 3 dots ( ⋮ ) press karein\n3. "Add to Home screen" press karein');
       }
     });
   }
 
-  window.addEventListener('appinstalled', function () {
+  window.addEventListener('appinstalled', function() {
     if (installWrap) installWrap.style.display = 'none';
     deferredPrompt = null;
   });
 
+  // ── SERVICE WORKER ──────────────────────────────────────
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
+    window.addEventListener('load', function() {
       navigator.serviceWorker.register('./sw.js')
-        .then(function () { console.log('SW registered'); })
-        .catch(function () { console.log('SW failed'); });
+        .then(function() { console.log('SW registered'); })
+        .catch(function() {});
     });
   }
 </script>
