@@ -1,4 +1,4 @@
-var CACHE_NAME = 'pakistan-app-v14';
+var CACHE_NAME = 'pakistan-app-v16';
 
 var CACHE_FILES = [
   './',
@@ -13,6 +13,7 @@ var CACHE_FILES = [
   './quiz.js',
   './cricket.js',
   './news.js',
+  './timeline.js',
   './gallery.js',
   './map.js',
   './manifest.json',
