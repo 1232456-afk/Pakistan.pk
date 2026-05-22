@@ -41,6 +41,8 @@
     <li><a href="#quiz-section"     onclick="closeDrawer()">Quiz</a></li>
     <li><a href="#cricket-section"  onclick="closeDrawer()">Cricket</a></li>
     <li><a href="#news-section"     onclick="closeDrawer()">News</a></li>
+    <li><a href="#timeline-section" onclick="closeDrawer()">Timeline</a></li>
+    <li><a href="#otd-section"      onclick="closeDrawer()">Aaj Ka Din</a></li>
   </ul>
 </div>
 
@@ -68,6 +70,8 @@
       <li><a href="#quiz-section">Quiz</a></li>
       <li><a href="#cricket-section">Cricket</a></li>
       <li><a href="#news-section">News</a></li>
+      <li><a href="#timeline-section">Timeline</a></li>
+      <li><a href="#otd-section">Aaj Ka Din</a></li>
     </ul>
     <button class="nav-toggle" id="nav-toggle" onclick="openDrawer()">
       <span></span><span></span><span></span>
@@ -367,6 +371,31 @@
   </div>
 </section>
 
+
+<!-- TIMELINE -->
+<section id="timeline-section">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Pakistan Ki Tarikh</span>
+      <h2 class="section-title">Pakistan History Timeline</h2>
+      <p class="section-desc">1930 se 2024 tak Pakistan ki ahem tarikh — filter kar ke dekho.</p>
+    </div>
+    <div id="timeline-container" class="fade-in"></div>
+  </div>
+</section>
+
+<!-- ON THIS DAY -->
+<section id="otd-section">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Aaj Ka Din — Pakistan Ki Tarikh Mein</span>
+      <h2 class="section-title">Aaj Ke Din Kya Hua Tha?</h2>
+      <p class="section-desc">Aaj ke din Pakistan ki history mein kya khaas hua tha.</p>
+    </div>
+    <div id="otd-container" class="fade-in"></div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-flag">🇵🇰</div>
@@ -388,6 +417,8 @@
     <a href="#quiz-section">Quiz</a>
     <a href="#cricket-section">Cricket</a>
     <a href="#news-section">News</a>
+    <a href="#timeline-section">Timeline</a>
+    <a href="#otd-section">Aaj Ka Din</a>
   </nav>
 
   <div class="install-wrap" id="install-wrap">
@@ -427,6 +458,7 @@
 <script src="quiz.js"></script>
 <script src="cricket.js"></script>
 <script src="news.js"></script>
+<script src="timeline.js"></script>
 
 <script>
   // ── DRAWER ──────────────────────────────────────────────
