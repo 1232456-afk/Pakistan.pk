@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Province Detail — Pakistan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="icon-192.png" type="image/png" />
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { overflow-x: hidden; }
+    body { font-family:'DM Sans',sans-serif; background:#f7f4ef; color:#1a1a1a; overflow-x:hidden; }
+
+    :root {
+      --green: #0b6e4f;
+      --dark:  #074a35;
+      --gold:  #c8a84b;
+      --cream: #f7f4ef;
+      --white: #ffffff;
+      --muted: #6b6b6b;
+      --border: rgba(0,0,0,0.08);
+      --radius: 14px;
+    }
+
+    /* BACK BUTTON */
+    .back-btn {
+      position: fixed; top: 16px; left: 16px; z-index: 100;
+      background: var(--dark); color: white;
+      border: none; border-radius: 99px;
+      padding: 10px 20px; font-size: 13px; font-weight: 600;
+      cursor: pointer; display: flex; align-items: center; gap: 8px;
+      font-family: 'DM Sans', sans-serif;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      text-decoration: none;
+      transition: transform .2s;
+    }
+    .back-btn:hover { transform: translateX(-3px); }
+
+    /* HERO */
+    .prov-hero {
+      min-height: 300px;
+      display: flex; align-items: flex-end;
+      padding: 80px 5% 2.5rem;
+      position: relative; overflow: hidden;
+    }
+    .prov-hero-bg {
+      position: absolute; inset: 0;
+      background: var(--dark);
+    }
+    .prov-hero-content { position: relative; z-index: 2; width: 100%; }
+    .prov-hero-emoji { font-size: 64px; margin-bottom: 12px; display: block; }
+    .prov-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 6vw, 60px);
+      font-weight: 700; color: white; line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .prov-hero h1 em { font-style: normal; color: var(--gold); }
+    .prov-capital { font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 16px; }
+    .prov-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+    .prov-badge {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      color: white; font-size: 12px; font-weight: 500;
+      padding: 5px 14px; border-radius: 99px;
+    }
+
+    /* CONTENT */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 5%; }
+    section { padding: 50px 0; }
+    section:nth-child(even) { background: white; }
+
+    .sec-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--green); display: block; margin-bottom: 6px; }
+    .sec-title  { font-family: 'Playfair Display', serif; font-size: clamp(22px,4vw,32px); font-weight: 700; margin-bottom: 1.5rem; }
+
+    /* STATS GRID */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card { background: white; border-radius: var(--radius); padding: 1.25rem; border: 1px solid var(--border); text-align: center; }
+    .stat-icon  { font-size: 28px; margin-bottom: 8px; }
+    .stat-val   { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--green); line-height: 1; margin-bottom: 4px; }
+    .stat-lbl   { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+    /* CITIES GRID */
+    .cities-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 10px; }
+    .city-card {
+      background: white; border-radius: var(--radius);
+      padding: 1rem 1.25rem; border: 1px solid var(--border);
+      border-left: 4px solid var(--green);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .city-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    .city-name { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+    .city-pop  { font-size: 12px; color: var(--muted); }
+    .city-type { font-size: 10px; font-weight: 600; color: var(--green); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+    /* PLACES */
+    .places-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 1rem; }
+    .place-card {
+      background: var(--cream); border-radius: var(--radius);
+      padding: 1.25rem; border: 1px solid var(--border);
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .place-icon { font-size: 28px; flex-shrink: 0; }
+    .place-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .place-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* FACTS TABLE */
+    .facts-table { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .fact-row { display: flex; justify-content: space-between; gap: 1rem; padding: 11px 16px; font-size: 13px; border-bottom: 1px solid var(--border); }
+    .fact-row:last-child { border: none; }
+    .fact-row:nth-child(even) { background: var(--cream); }
+    .fact-row .k { color: var(--muted); }
+    .fact-row .v { font-weight: 600; text-align: right; }
+
+    /* LIST */
+    .info-list { display: flex; flex-direction: column; gap: 6px; }
+    .info-list li { font-size: 13px; color: #444; padding: 8px 12px; background: white; border-radius: 8px; border: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-start; list-style: none; }
+    .info-list li::before { content: '▸'; color: var(--green); flex-shrink: 0; font-size: 11px; margin-top: 2px; }
+
+    /* FOOTER */
+    .prov-footer { background: var(--dark); color: rgba(255,255,255,0.6); text-align: center; padding: 2rem; font-size: 13px; }
+    .prov-footer a { color: var(--gold); text-decoration: none; font-weight: 600; }
+
+    @media (max-width: 540px) {
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .cities-grid { grid-template-columns: 1fr 1fr; }
+      .places-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="back-btn">← Pakistan</a>
+
+<div id="prov-page">
+  <!-- Injected by JS -->
+</div>
+
+<script>
+// ── ALL PROVINCE DATA ────────────────────────────────────────
+var PROVINCES = {
+
+  punjab: {
+    name: 'Punjab',
+    urdu: 'پنجاب',
+    emoji: '🌾',
+    capital: 'Lahore',
+    color: '#1a6b3a',
+    highlight: 'Breadbasket of Pakistan — Most populous province',
+    stats: [
+      { icon:'👥', val:'~120M', lbl:'Population'  },
+      { icon:'📐', val:'205,344', lbl:'Area (km²)' },
+      { icon:'🏙️', val:'36+', lbl:'Districts'     },
+      { icon:'🌾', val:'77%', lbl:'Agricultural'  },
+    ],
+    facts: [
+      { k:'Capital',           v:'Lahore'           },
+      { k:'Largest City',      v:'Lahore'           },
+      { k:'Governor',          v:'Sardar Saleem Haider' },
+      { k:'CM',                v:'Maryam Nawaz Sharif' },
+      { k:'Languages',         v:'Punjabi, Urdu, Saraiki' },
+      { k:'Literacy Rate',     v:'~65%'             },
+      { k:'GDP Contribution',  v:'~53% of Pakistan' },
+      { k:'Major Crops',       v:'Wheat, Cotton, Rice, Sugarcane' },
+      { k:'Famous For',        v:'Mughal heritage, food, cricket' },
+    ],
+    cities: [
+      { name:'Lahore',      pop:'~14 Million',  type:'Capital / Largest' },
+      { name:'Faisalabad',  pop:'~3.6 Million', type:'Industrial hub'    },
+      { name:'Rawalpindi',  pop:'~2.2 Million', type:'Twin city of ISB'  },
+      { name:'Gujranwala',  pop:'~2.3 Million', type:'City of wrestlers' },
+      { name:'Multan',      pop:'~2 Million',   type:'City of Saints'    },
+      { name:'Sialkot',     pop:'~655K',        type:'Sports goods hub'  },
+      { name:'Bahawalpur',  pop:'~760K',        type:'Historical city'   },
+      { name:'Sargodha',    pop:'~600K',        type:'Citrus capital'    },
+      { name:'Gujrat',      pop:'~390K',        type:'Fans & furniture'  },
+      { name:'Sheikhupura', pop:'~473K',        type:'Industrial city'   },
+      { name:'Rahim Yar Khan', pop:'~420K',     type:'Southern Punjab'   },
+      { name:'Jhang',       pop:'~414K',        type:'Historic city'     },
+    ],
+    places: [
+      { icon:'🏯', name:'Lahore Fort (Shahi Qila)', desc:'UNESCO World Heritage Site — Mughal era masterpiece' },
+      { icon:'🕌', name:'Badshahi Mosque',          desc:'One of the largest mosques in the world — 1673' },
+      { icon:'🌿', name:'Shalimar Gardens',         desc:'UNESCO World Heritage — Mughal garden 1641' },
+      { icon:'🏰', name:'Rohtas Fort',              desc:'UNESCO World Heritage — Sher Shah Suri 1541' },
+      { icon:'🕍', name:'Wazir Khan Mosque',        desc:'Most intricately decorated Mughal mosque' },
+      { icon:'🏛️', name:'Lahore Museum',           desc:'Largest museum in Pakistan — est. 1894' },
+      { icon:'🌊', name:'Taunsa Barrage',           desc:'Major irrigation barrage on Indus River' },
+      { icon:'⚔️', name:'Harappa',                 desc:'Ancient Indus Valley Civilization site' },
+      { icon:'🌺', name:'Nankana Sahib',            desc:'Birthplace of Guru Nanak — Sikh holy site' },
+      { icon:'🏟️', name:'Gaddafi Stadium',         desc:'Pakistan\'s largest cricket stadium — Lahore' },
+    ],
+    about: 'Punjab is the most populous and economically dominant province of Pakistan, contributing over half of the national GDP. Known as the "Breadbasket of Pakistan," it produces the majority of the country\'s wheat, cotton, rice, and sugarcane. The province has a rich Mughal heritage with UNESCO World Heritage Sites. Lahore, its capital, is the cultural heart of Pakistan.',
+    languages: ['Punjabi (most widely spoken)', 'Urdu (official)', 'Saraiki (south Punjab)', 'Hindi dialects'],
+    universities: ['University of the Punjab (1882)', 'LUMS', 'UET Lahore', 'King Edward Medical University', 'Quaid-e-Azam Medical College'],
+  },
+
+  sindh: {
+    name: 'Sindh',
+    urdu: 'سندھ',
+    emoji: '🌊',
+    capital: 'Karachi',
+    color: '#1a3a8f',
+    highlight: 'Financial capital — Home of Indus Valley Civilization',
+    stats: [
+      { icon:'👥', val:'~55M',    lbl:'Population' },
+      { icon:'📐', val:'140,914', lbl:'Area (km²)' },
+      { icon:'🏙️', val:'29',     lbl:'Districts'  },
+      { icon:'🌊', val:'350km',   lbl:'Coastline'  },
+    ],
+    facts: [
+      { k:'Capital',          v:'Karachi'          },
+      { k:'Largest City',     v:'Karachi'          },
+      { k:'Languages',        v:'Sindhi, Urdu, Balochi' },
+      { k:'Literacy Rate',    v:'~60%'             },
+      { k:'GDP Contribution', v:'~30% of Pakistan' },
+      { k:'Major Crops',      v:'Rice, Cotton, Wheat, Sugarcane' },
+      { k:'Coastline',        v:'350 km on Arabian Sea' },
+      { k:'Famous For',       v:'Finance, ports, ancient civilization' },
+    ],
+    cities: [
+      { name:'Karachi',    pop:'~16-22 Million', type:'Largest city / Financial hub' },
+      { name:'Hyderabad',  pop:'~1.7 Million',   type:'2nd largest in Sindh'         },
+      { name:'Sukkur',     pop:'~499K',          type:'Northern Sindh hub'           },
+      { name:'Larkana',    pop:'~490K',          type:'Birthplace of Bhuttos'        },
+      { name:'Nawabshah',  pop:'~360K',          type:'Commercial centre'            },
+      { name:'Mirpur Khas',pop:'~233K',          type:'Agricultural hub'             },
+      { name:'Jacobabad',  pop:'~200K',          type:'Hottest city in Pakistan'     },
+      { name:'Shikarpur',  pop:'~175K',          type:'Historic trading town'        },
+      { name:'Khairpur',   pop:'~200K',          type:'Dates capital'                },
+      { name:'Dadu',       pop:'~145K',          type:'District headquarters'        },
+    ],
+    places: [
+      { icon:'🏺', name:'Mohenjo-daro',        desc:'UNESCO — 5,000 year old Indus Valley Civilization' },
+      { icon:'🕌', name:'Shah Jahan Mosque, Thatta', desc:'UNESCO World Heritage — 17th century Mughal mosque' },
+      { icon:'🏰', name:'Makli Necropolis',    desc:'UNESCO — World\'s largest Islamic necropolis' },
+      { icon:'⚓', name:'Karachi Port',        desc:'Pakistan\'s busiest and largest seaport' },
+      { icon:'🏖️', name:'Clifton Beach',      desc:'Most popular beach in Pakistan — Karachi' },
+      { icon:'🦅', name:'Keenjhar Lake',       desc:'2nd largest freshwater lake in Pakistan' },
+      { icon:'🌿', name:'Ranikot Fort',        desc:'World\'s largest fort — Sindh' },
+      { icon:'🐊', name:'Chotiari Reservoir', desc:'Major water reservoir in Sindh' },
+    ],
+    about: 'Sindh is the third largest province by area and second largest by population. Karachi, its capital, is Pakistan\'s largest city and financial hub, contributing over 20% of national GDP. The province is home to Mohenjo-daro, one of the world\'s oldest urban settlements. Sindhi culture is rich with music, poetry, and the famous Ajrak textile.',
+    languages: ['Sindhi (native)', 'Urdu (official)', 'Balochi', 'Brahui', 'Kutchi'],
+    universities: ['University of Karachi', 'NED University', 'University of Sindh, Jamshoro', 'IBA Karachi', 'Dow Medical University'],
+  },
+
+  kpk: {
+    name: 'Khyber Pakhtunkhwa',
+    urdu: 'خیبر پختونخوا',
+    emoji: '⛰️',
+    capital: 'Peshawar',
+    color: '#78350f',
+    highlight: 'Gateway to Central Asia — Land of Pashtuns',
+    stats: [
+      { icon:'👥', val:'~40M',    lbl:'Population' },
+      { icon:'📐', val:'101,741', lbl:'Area (km²)' },
+      { icon:'🏙️', val:'35',     lbl:'Districts'  },
+      { icon:'🌲', val:'17%',    lbl:'Forest cover'},
+    ],
+    facts: [
+      { k:'Capital',          v:'Peshawar'           },
+      { k:'Largest City',     v:'Peshawar'           },
+      { k:'Languages',        v:'Pashto, Hindko, Urdu' },
+      { k:'Literacy Rate',    v:'~53%'               },
+      { k:'Former Name',      v:'North-West Frontier Province (NWFP)' },
+      { k:'Renamed',          v:'2010 — 18th Amendment' },
+      { k:'Famous For',       v:'Pashtun culture, mountains, Swat valley' },
+      { k:'Major Crops',      v:'Wheat, Maize, Tobacco, Fruits' },
+    ],
+    cities: [
+      { name:'Peshawar',   pop:'~2.3 Million', type:'Capital — Ancient city'    },
+      { name:'Mardan',     pop:'~358K',        type:'2nd largest city'          },
+      { name:'Mingora',    pop:'~279K',        type:'Swat Valley hub'           },
+      { name:'Abbottabad', pop:'~151K',        type:'Hill station / KAKUL PMA'  },
+      { name:'Kohat',      pop:'~163K',        type:'Historic garrison city'    },
+      { name:'Dera Ismail Khan', pop:'~228K',  type:'Southern KPK hub'          },
+      { name:'Swabi',      pop:'~115K',        type:'District headquarter'      },
+      { name:'Nowshera',   pop:'~138K',        type:'Cantonment city'           },
+      { name:'Haripur',    pop:'~113K',        type:'Hazara district'           },
+      { name:'Battagram',  pop:'~45K',         type:'Northern KPK'              },
+    ],
+    places: [
+      { icon:'🌺', name:'Swat Valley',         desc:'Switzerland of Pakistan — stunning beauty' },
+      { icon:'🏔️', name:'Chitral',             desc:'Historic kingdom — Tirich Mir peak nearby' },
+      { icon:'🏛️', name:'Peshawar Museum',     desc:'World\'s finest Gandhara art collection' },
+      { icon:'🌊', name:'Shogran',             desc:'Beautiful plateau — 2362m altitude'       },
+      { icon:'🦅', name:'Nathia Gali',         desc:'Famous hill station near Abbottabad'       },
+      { icon:'⛩️', name:'Takht-i-Bahi',        desc:'UNESCO — Buddhist monastery ruins 1st century' },
+      { icon:'🌿', name:'Kaghan Valley',       desc:'Stunning valley — Naran & Saiful Muluk lake' },
+      { icon:'🏯', name:'Bala Hisar Fort',     desc:'Ancient fort of Peshawar — British era'   },
+    ],
+    about: 'Khyber Pakhtunkhwa (KPK) is renowned for its fierce Pashtun culture, breathtaking mountain landscapes, and strategic location bordering Afghanistan. The province contains some of Pakistan\'s most scenic valleys — Swat, Chitral, Kaghan. It was a major corridor of the ancient Silk Road and home to Gandhara civilization.',
+    languages: ['Pashto (dominant)', 'Hindko', 'Urdu', 'Khowar', 'Shina', 'Kohistani'],
+    universities: ['University of Peshawar', 'University of Engineering & Technology Peshawar', 'Abdul Wali Khan University', 'Hazara University'],
+  },
+
+  balochistan: {
+    name: 'Balochistan',
+    urdu: 'بلوچستان',
+    emoji: '🏔️',
+    capital: 'Quetta',
+    color: '#6b3a0f',
+    highlight: 'Largest province by area — Rich in natural resources',
+    stats: [
+      { icon:'👥', val:'~15M',    lbl:'Population' },
+      { icon:'📐', val:'347,190', lbl:'Area (km²)' },
+      { icon:'🏙️', val:'36',     lbl:'Districts'  },
+      { icon:'⛏️', val:'Rich',   lbl:'Resources'  },
+    ],
+    facts: [
+      { k:'Capital',          v:'Quetta'             },
+      { k:'Largest City',     v:'Quetta'             },
+      { k:'Languages',        v:'Balochi, Brahui, Pashto, Urdu' },
+      { k:'Area',             v:'347,190 km² — 44% of Pakistan' },
+      { k:'Coastline',        v:'770 km on Arabian Sea'         },
+      { k:'Famous For',       v:'CPEC, Gwadar port, natural gas' },
+      { k:'Natural Gas',      v:'Largest reserves in Pakistan'  },
+      { k:'Border Countries', v:'Iran & Afghanistan'            },
+    ],
+    cities: [
+      { name:'Quetta',    pop:'~1.3 Million', type:'Capital — Fruit city'        },
+      { name:'Gwadar',    pop:'~90K',         type:'CPEC — Deep sea port'        },
+      { name:'Turbat',    pop:'~180K',        type:'2nd largest city'            },
+      { name:'Khuzdar',   pop:'~130K',        type:'Central Balochistan hub'     },
+      { name:'Chaman',    pop:'~110K',        type:'Afghanistan border crossing' },
+      { name:'Kharan',    pop:'~80K',         type:'District headquarters'       },
+      { name:'Nushki',    pop:'~75K',         type:'Near Afghanistan border'     },
+      { name:'Panjgur',   pop:'~65K',         type:'Date palms region'           },
+      { name:'Sibi',      pop:'~60K',         type:'Historical city — hot climate'},
+      { name:'Dera Bugti', pop:'~55K',        type:'Gas fields region'           },
+    ],
+    places: [
+      { icon:'⚓', name:'Gwadar Port',         desc:'CPEC — China Pakistan Economic Corridor hub' },
+      { icon:'🌺', name:'Hanna Lake',          desc:'Beautiful lake near Quetta'                  },
+      { icon:'🏔️', name:'Ziarat',             desc:'Juniper forest — Jinnah Residency'           },
+      { icon:'🦅', name:'Makran Coast',        desc:'770 km scenic Arabian Sea coastline'         },
+      { icon:'💎', name:'Reko Diq',            desc:'World\'s 5th largest copper-gold deposit'    },
+      { icon:'🌿', name:'Kund Malir Beach',    desc:'Most beautiful beach in Pakistan'            },
+      { icon:'🏰', name:'Miri Fort, Khuzdar', desc:'Historic Brahui fort'                         },
+      { icon:'🌊', name:'Ormara',             desc:'Scenic coastal town on Arabian Sea'           },
+      { icon:'⛰️', name:'Quetta Valley',      desc:'1,680m altitude — fruit orchards'             },
+    ],
+    about: 'Balochistan is the largest province of Pakistan by area, covering 44% of the total land area. Despite its vast size, it has the smallest population. The province is enormously rich in natural resources — natural gas, coal, copper, gold, and chromite. Gwadar port is the crown jewel of CPEC (China-Pakistan Economic Corridor).',
+    languages: ['Balochi', 'Brahui', 'Pashto', 'Urdu', 'Persian (Dari)'],
+    universities: ['University of Balochistan', 'Balochistan University of Engineering & Technology', 'Sardar Bahadur Khan University'],
+  },
+
+  gilgit: {
+    name: 'Gilgit-Baltistan',
+    urdu: 'گلگت بلتستان',
+    emoji: '❄️',
+    capital: 'Gilgit',
+    color: '#1e3a5f',
+    highlight: 'Roof of the World — K2 & highest peaks on Earth',
+    stats: [
+      { icon:'👥', val:'~2.4M',  lbl:'Population' },
+      { icon:'📐', val:'72,971', lbl:'Area (km²)' },
+      { icon:'⛰️', val:'5',     lbl:'8000m+ peaks'},
+      { icon:'🏔️', val:'K2',   lbl:'8,611m'      },
+    ],
+    facts: [
+      { k:'Capital',       v:'Gilgit'                       },
+      { k:'Status',        v:'Autonomous Territory'         },
+      { k:'Languages',     v:'Shina, Balti, Brushaski, Urdu'},
+      { k:'Highest Peak',  v:'K2 — 8,611m (2nd in world)'  },
+      { k:'Famous For',    v:'K2, Karakoram, trekking'      },
+      { k:'Mountain Ranges',v:'Karakoram, Himalayas, Hindu Kush'},
+      { k:'Major Pass',    v:'Khunjerab Pass — 4,693m'      },
+      { k:'Border',        v:'China (Xinjiang) to the north'},
+    ],
+    cities: [
+      { name:'Gilgit',   pop:'~250K', type:'Capital'           },
+      { name:'Skardu',   pop:'~150K', type:'Gateway to K2'     },
+      { name:'Hunza',    pop:'~60K',  type:'Tourist paradise'  },
+      { name:'Ghanche',  pop:'~50K',  type:'Siachen region'    },
+      { name:'Ghizer',   pop:'~45K',  type:'Remote district'   },
+      { name:'Chilas',   pop:'~40K',  type:'Diamer district'   },
+      { name:'Shigar',   pop:'~35K',  type:'Near K2 base camp' },
+      { name:'Khaplu',   pop:'~30K',  type:'Ghanche capital'   },
+    ],
+    places: [
+      { icon:'⛰️', name:'K2 — 8,611m',        desc:"World's 2nd highest peak — Karakoram Range" },
+      { icon:'🌄', name:'Hunza Valley',        desc:'Most beautiful valley — paradise on Earth'  },
+      { icon:'🏔️', name:'Deosai Plains',      desc:"World's 2nd highest plateau — 4,114m"       },
+      { icon:'💧', name:'Attabad Lake',        desc:'Stunning turquoise lake formed in 2010'      },
+      { icon:'🛣️', name:'Karakoram Highway',  desc:"World's highest paved international road"    },
+      { icon:'🦅', name:'Khunjerab Pass',      desc:'4,693m — China-Pakistan border crossing'    },
+      { icon:'🏰', name:'Baltit Fort',         desc:'800 year old fort — UNESCO tentative list'  },
+      { icon:'🌊', name:'Shangrila Resort',    desc:'Lower Kachura Lake — natural beauty'        },
+      { icon:'⛷️', name:'Naltar Valley',       desc:'Skiing destination — colorful lakes'        },
+    ],
+    about: 'Gilgit-Baltistan is an autonomous territory in the extreme north of Pakistan. It is home to the highest concentration of tall mountains in the world — including K2 (8,611m), the second highest peak. The region has three of the world\'s greatest mountain ranges: Karakoram, Himalayas, and Hindu Kush.',
+    languages: ['Shina', 'Balti', 'Brushaski', 'Khowar', 'Wakhi', 'Urdu'],
+    universities: ['Karakoram International University', 'University of Baltistan'],
+  },
+
+  azad_kashmir: {
+    name: 'Azad Kashmir',
+    urdu: 'آزاد کشمیر',
+    emoji: '🏡',
+    capital: 'Muzaffarabad',
+    color: '#2d5016',
+    highlight: 'Autonomous Territory — Scenic valleys & mountains',
+    stats: [
+      { icon:'👥', val:'~5.5M',  lbl:'Population' },
+      { icon:'📐', val:'13,297', lbl:'Area (km²)' },
+      { icon:'🏙️', val:'10',    lbl:'Districts'  },
+      { icon:'🌊', val:'2',     lbl:'Major rivers'},
+    ],
+    facts: [
+      { k:'Capital',      v:'Muzaffarabad'         },
+      { k:'Status',       v:'Autonomous Territory' },
+      { k:'Languages',    v:'Kashmiri, Pahari, Urdu'},
+      { k:'President',    v:'Sultan Mehmood Chaudhry'},
+      { k:'PM',           v:'Chaudhry Anwar ul Haq' },
+      { k:'Rivers',       v:'Jhelum & Neelum'      },
+      { k:'Famous For',   v:'Scenic beauty, Kashmir conflict' },
+      { k:'Highest Peak', v:'Sarwali — 6,326m'     },
+    ],
+    cities: [
+      { name:'Muzaffarabad', pop:'~720K', type:'Capital'             },
+      { name:'Mirpur',       pop:'~456K', type:'Largest city'        },
+      { name:'Rawalakot',    pop:'~100K', type:'Poonch division hub' },
+      { name:'Kotli',        pop:'~95K',  type:'District capital'    },
+      { name:'Bagh',         pop:'~80K',  type:'Scenic district'     },
+      { name:'Bhimber',      pop:'~75K',  type:'Southern AJK'        },
+      { name:'Pallandri',    pop:'~30K',  type:'Sudhnati district'   },
+      { name:'Hajira',       pop:'~25K',  type:'Poonch district'     },
+    ],
+    places: [
+      { icon:'🌊', name:'Neelum Valley',     desc:'Stunning valley — Neelum River flows through' },
+      { icon:'🏔️', name:'Shounter Lake',    desc:'Beautiful alpine lake at high altitude'        },
+      { icon:'🌿', name:'Leepa Valley',     desc:'One of the most beautiful valleys in AJK'      },
+      { icon:'🏰', name:'Red Fort, Muzaffarabad', desc:'Historic fort overlooking the city'      },
+      { icon:'🌺', name:'Ratti Gali Lake',  desc:'High altitude glacial lake — stunning view'    },
+      { icon:'⛩️', name:'Toli Pir',        desc:'Hill station with panoramic views'             },
+      { icon:'🌊', name:'Jhelum River',     desc:'Major river flowing through AJK'               },
+      { icon:'🦅', name:'Sudhan Gali',      desc:'Beautiful hill station in Bagh district'       },
+    ],
+    about: 'Azad Jammu & Kashmir (AJK) is a self-governing territory administered by Pakistan. Known for its breathtaking natural beauty — from the Neelum Valley to alpine lakes — it attracts thousands of tourists annually. The territory has been at the center of the Kashmir conflict since 1947.',
+    languages: ['Kashmiri', 'Pahari (Hindko)', 'Urdu', 'Gojri', 'Shina'],
+    universities: ['University of Azad Jammu & Kashmir', 'Mirpur University of Science & Technology'],
+  },
+};
+
+// ── RENDER PAGE ───────────────────────────────────────────────
+function renderProvince(key) {
+  var p = PROVINCES[key];
+  if (!p) {
+    document.getElementById('prov-page').innerHTML =
+      '<div style="text-align:center;padding:100px 20px;"><h2>Province not found</h2><a href="index.html">← Back</a></div>';
+    return;
+  }
+
+  document.title = p.name + ' — Pakistan';
+
+  var statsHtml = p.stats.map(function(s) {
+    return '<div class="stat-card"><div class="stat-icon">' + s.icon + '</div><div class="stat-val">' + s.val + '</div><div class="stat-lbl">' + s.lbl + '</div></div>';
+  }).join('');
+
+  var factsHtml = p.facts.map(function(f) {
+    return '<div class="fact-row"><span class="k">' + f.k + '</span><span class="v">' + f.v + '</span></div>';
+  }).join('');
+
+  var citiesHtml = p.cities.map(function(c) {
+    return '<div class="city-card"><div class="city-name">' + c.name + '</div><div class="city-pop">Population: ' + c.pop + '</div><div class="city-type">' + c.type + '</div></div>';
+  }).join('');
+
+  var placesHtml = p.places.map(function(pl) {
+    return '<div class="place-card"><div class="place-icon">' + pl.icon + '</div><div><div class="place-name">' + pl.name + '</div><div class="place-desc">' + pl.desc + '</div></div></div>';
+  }).join('');
+
+  var langsHtml = p.languages.map(function(l) {
+    return '<li>' + l + '</li>';
+  }).join('');
+
+  var uniHtml = p.universities ? p.universities.map(function(u) {
+    return '<li>' + u + '</li>';
+  }).join('') : '';
+
+  document.getElementById('prov-page').innerHTML =
+    // HERO
+    '<div class="prov-hero" style="background: linear-gradient(160deg,' + p.color + ' 0%, #1a1a1a 100%);">' +
+      '<div class="prov-hero-bg"></div>' +
+      '<div class="prov-hero-content">' +
+        '<span class="prov-hero-emoji">' + p.emoji + '</span>' +
+        '<h1>' + p.name + ' <em>' + p.urdu + '</em></h1>' +
+        '<div class="prov-capital">Capital: ' + p.capital + '</div>' +
+        '<div class="prov-badges">' +
+          p.stats.map(function(s){ return '<span class="prov-badge">' + s.icon + ' ' + s.val + ' ' + s.lbl + '</span>'; }).join('') +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+
+    // ABOUT
+    '<section><div class="container">' +
+      '<span class="sec-label">Overview</span>' +
+      '<h2 class="sec-title">About ' + p.name + '</h2>' +
+      '<p style="font-size:14px;color:#444;line-height:1.85;margin-bottom:1.5rem;">' + p.about + '</p>' +
+      '<div class="stats-grid">' + statsHtml + '</div>' +
+    '</div></section>' +
+
+    // KEY FACTS
+    '<section><div class="container">' +
+      '<span class="sec-label">Key Facts</span>' +
+      '<h2 class="sec-title">Important Information</h2>' +
+      '<div class="facts-table">' + factsHtml + '</div>' +
+    '</div></section>' +
+
+    // CITIES
+    '<section><div class="container">' +
+      '<span class="sec-label">Major Cities</span>' +
+      '<h2 class="sec-title">Cities of ' + p.name + '</h2>' +
+      '<div class="cities-grid">' + citiesHtml + '</div>' +
+    '</div></section>' +
+
+    // FAMOUS PLACES
+    '<section><div class="container">' +
+      '<span class="sec-label">Tourism & Heritage</span>' +
+      '<h2 class="sec-title">Famous Places</h2>' +
+      '<div class="places-grid">' + placesHtml + '</div>' +
+    '</div></section>' +
+
+    // LANGUAGES & UNIVERSITIES
+    '<section><div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">' +
+      '<div>' +
+        '<span class="sec-label">Languages</span>' +
+        '<h2 class="sec-title" style="font-size:20px;margin-bottom:1rem;">Languages Spoken</h2>' +
+        '<ul class="info-list">' + langsHtml + '</ul>' +
+      '</div>' +
+      (uniHtml ? '<div>' +
+        '<span class="sec-label">Education</span>' +
+        '<h2 class="sec-title" style="font-size:20px;margin-bottom:1rem;">Major Universities</h2>' +
+        '<ul class="info-list">' + uniHtml + '</ul>' +
+      '</div>' : '') +
+    '</div></section>' +
+
+    // FOOTER
+    '<div class="prov-footer">' +
+      '<p>Part of <a href="index.html">Pakistan — Islamic Republic of Pakistan</a></p>' +
+    '</div>';
+
+  // Add responsive fix for languages/universities section on mobile
+  var twoCol = document.querySelector('section:last-of-type .container');
+  if (twoCol && window.innerWidth < 540) {
+    twoCol.style.gridTemplateColumns = '1fr';
+  }
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', function() {
+  var params = new URLSearchParams(window.location.search);
+  var prov   = params.get('p') || 'punjab';
+  renderProvince(prov.toLowerCase().replace(/\s+/g,'_').replace(/-/g,'_'));
+});
+</script>
+
+</body>
+</html>
