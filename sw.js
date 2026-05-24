@@ -1,4 +1,4 @@
-var CACHE_NAME = 'pakistan-app-v16';
+var CACHE_NAME = 'pakistan-app-v22';
 
 var CACHE_FILES = [
   './',
