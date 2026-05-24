@@ -135,7 +135,13 @@ function buildProvinces() {
       cities += '<span class="city-tag">' + p.majorCities[j] + '</span>';
     }
 
-    html += '<div class="prov-card fade-in">';
+    var keys = {
+      'Punjab':'punjab','Sindh':'sindh',
+      'Khyber Pakhtunkhwa':'kpk','Balochistan':'balochistan',
+      'Gilgit-Baltistan':'gilgit','Azad Kashmir':'azad_kashmir'
+    };
+    var pkey = keys[p.name] || p.name.toLowerCase();
+    html += '<div class="prov-card fade-in" onclick="window.location=\'province.html?p='+pkey+'\'" style="cursor:pointer;">';
     html += '<div class="prov-head">';
     html += '<div class="prov-ico">' + p.emoji + '</div>';
     html += '<div>';
