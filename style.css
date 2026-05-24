@@ -99,6 +99,25 @@ p  { font-size:14px; color:#6b6b6b; line-height:1.85; }
 .nav-toggle { display:none; flex-direction:column; gap:5px; padding:8px; cursor:pointer; }
 .nav-toggle span { width:22px; height:2px; background:white; border-radius:99px; display:block; transition:.3s; }
 
+.nav-bismillah {
+  flex:1;
+  text-align:center;
+  font-family:'Noto Naskh Arabic','Scheherazade New',serif;
+  font-size:18px;
+  color:#c8a84b;
+  direction:rtl;
+  letter-spacing:1px;
+  text-shadow:0 0 20px rgba(200,168,75,0.4);
+  padding:0 12px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+@media (max-width:600px) {
+  .nav-bismillah { font-size:14px; }
+}
+
 /* Always use hamburger + drawer — hide desktop nav-links */
 .nav-links  { display:none !important; }
 .nav-toggle { display:flex !important; }
@@ -484,4 +503,47 @@ footer > p   { font-size:13px; opacity:.45; }
   .tl-year { font-size:15px; }
   .otd-title { font-size:18px; }
   .hero-marquee span { font-size:11px; }
+}
+
+/* ── HERO QUOTE ──────────────────────────────────────────── */
+.hero-quote {
+  position: relative;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-left: 3px solid #c8a84b;
+  background: rgba(200,168,75,0.08);
+  border-radius: 0 10px 10px 0;
+  animation: fadeUp .7s .05s ease both;
+  max-width: 560px;
+}
+.hero-quote-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: #c8a84b;
+  line-height: 0;
+  vertical-align: -10px;
+  opacity: .8;
+}
+.hero-quote {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.92);
+  font-style: italic;
+  line-height: 1.7;
+  display: block;
+}
+.hero-quote-attr {
+  display: block;
+  font-size: 11px;
+  color: #c8a84b;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+@media (max-width:540px) {
+  .hero-quote { font-size: 13px; padding: .75rem 1rem; }
+  .hero-quote-mark { font-size: 24px; }
 }
