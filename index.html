@@ -42,7 +42,8 @@
     <li><a href="#cricket-section"  onclick="closeDrawer()">Cricket</a></li>
     <li><a href="#news-section"     onclick="closeDrawer()">News</a></li>
     <li><a href="#timeline-section" onclick="closeDrawer()">Timeline</a></li>
-    <li><a href="#otd-section"      onclick="closeDrawer()">Aaj Ka Din</a></li>
+    <li><a href="#otd-section"      onclick="closeDrawer()">On This Day</a></li>
+    <li><a href="#footer" onclick="closeDrawer()">More Info</a></li>
   </ul>
 </div>
 
@@ -72,7 +73,8 @@
       <li><a href="#cricket-section">Cricket</a></li>
       <li><a href="#news-section">News</a></li>
       <li><a href="#timeline-section">Timeline</a></li>
-      <li><a href="#otd-section">Aaj Ka Din</a></li>
+      <li><a href="#otd-section">On This Day</a></li>
+      <li><a href="#footer">More Info</a></li>
     </ul>
     <button class="nav-toggle" id="nav-toggle" onclick="openDrawer()">
       <span></span><span></span><span></span>
@@ -410,11 +412,12 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer id="footer">
   <div class="footer-flag">🇵🇰</div>
   <div class="footer-name">Islamic Republic of Pakistan</div>
   <p>پاکستان زندہ باد — Long Live Pakistan</p>
   <nav class="footer-links">
+    <a href="#hero">Home</a>
     <a href="#about">About</a>
     <a href="#leadership">Leadership</a>
     <a href="#personalities">Personalities</a>
@@ -431,7 +434,7 @@
     <a href="#cricket-section">Cricket</a>
     <a href="#news-section">News</a>
     <a href="#timeline-section">Timeline</a>
-    <a href="#otd-section">Aaj Ka Din</a>
+    <a href="#otd-section">On This Day</a>
   </nav>
 
   <div class="install-wrap" id="install-wrap">
@@ -520,7 +523,7 @@
   // ── SERVICE WORKER ──────────────────────────────────────
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
-      navigator.serviceWorker.register('./sw.js')
+      navigator.serviceWorker.register('./sw.js')  
         .then(function() { console.log('SW registered'); })
         .catch(function() {});
     });
