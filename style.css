@@ -552,69 +552,338 @@ footer > p   { font-size:13px; opacity:.45; }
 }
 
 /* ── HERO QUOTE BOX ──────────────────────────────────────── */
-.hero-quote-box {
-  margin-bottom: 1.5rem;
-  animation: fadeUp .6s .03s ease both;
-  max-width: 620px;
-  position: relative;
-  z-index: 2;
-}
-.hero-quote-inner {
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  background: linear-gradient(135deg, rgba(200,168,75,0.12) 0%, rgba(200,168,75,0.05) 100%);
-  border: 1px solid rgba(200,168,75,0.35);
-  border-radius: 14px;
-  padding: 16px 20px;
-  position: relative;
-  backdrop-filter: blur(4px);
-}
-.hero-quote-inner::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 4px;
-  background: linear-gradient(180deg, #c8a84b, #f0d080, #c8a84b);
-  border-radius: 14px 0 0 14px;
-}
-.hq-mark {
-  font-family: 'Playfair Display', serif;
-  font-size: 42px;
-  color: #c8a84b;
-  line-height: 0.8;
-  opacity: 0.8;
-  flex-shrink: 0;
-  margin-top: 4px;
-}
-.hq-mark-close {
-  align-self: flex-end;
-  margin-top: 0;
-  margin-bottom: 2px;
-}
-.hq-text {
-  font-family: 'Playfair Display', serif;
-  font-size: 16px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.95);
-  font-style: italic;
-  line-height: 1.65;
-  flex: 1;
-  letter-spacing: 0.3px;
-}
-.hq-attr {
-  font-size: 11px;
-  color: #c8a84b;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-top: 8px;
-  padding-left: 20px;
-  opacity: 0.9;
+.hero-quote-box{
+  margin-bottom:1.7rem;
+  animation:fadeUp .7s .08s ease both;
+  max-width:640px;
+  position:relative;
+  z-index:2;
 }
 
-@media (max-width:540px) {
-  .hq-text { font-size: 13px; }
-  .hq-mark  { font-size: 30px; }
-  .hero-quote-inner { padding: 12px 14px; }
+.hero-quote-inner{
+  position:relative;
+  overflow:hidden;
+
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+
+  padding:20px 22px;
+
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(200,168,75,0.16) 0%,
+      rgba(200,168,75,0.06) 100%
+    );
+
+  border:1px solid rgba(200,168,75,0.28);
+
+  backdrop-filter:blur(10px);
+
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease,
+    border-color .3s ease;
+}
+
+.hero-quote-inner:hover{
+  transform:translateY(-2px);
+
+  border-color:rgba(200,168,75,0.45);
+
+  box-shadow:
+    0 16px 48px rgba(0,0,0,0.22),
+    0 0 24px rgba(200,168,75,0.08);
+}
+
+/* GOLD LEFT BORDER */
+.hero-quote-inner::before{
+  content:'';
+
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+
+  width:4px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f5d97a 0%,
+      #c8a84b 50%,
+      #f5d97a 100%
+    );
+
+  border-radius:18px 0 0 18px;
+}
+
+/* LIGHT GLOW */
+.hero-quote-inner::after{
+  content:'';
+
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(255,255,255,0.08),
+      transparent 45%
+    );
+
+  pointer-events:none;
+}
+
+/* QUOTATION MARKS */
+.hq-mark{
+  font-family:'Playfair Display',serif;
+
+  font-size:48px;
+  line-height:0.8;
+
+  color:#d8bb61;
+
+  opacity:.9;
+
+  flex-shrink:0;
+
+  text-shadow:0 0 18px rgba(200,168,75,0.18);
+}
+
+.hq-mark-close{
+  align-self:flex-end;
+  margin-bottom:4px;
+}
+
+/* QUOTE TEXT */
+.hq-text{
+  flex:1;
+
+  font-family:'Playfair Display',serif;
+
+  font-size:17px;
+  font-weight:500;
+  line-height:1.8;
+  letter-spacing:.3px;
+
+  color:rgba(255,255,255,0.96);
+
+  font-style:italic;
+
+  text-shadow:0 1px 1px rgba(0,0,0,0.25);
+}
+
+/* AUTHOR */
+.hq-attr{
+  margin-top:10px;
+  padding-left:22px;
+
+  font-size:11px;
+  font-weight:700;
+
+  letter-spacing:2px;
+  text-transform:uppercase;
+
+  color:#d9bb5d;
+
+  opacity:.92;
+}
+
+/* MOBILE */
+@media (max-width:540px){
+
+  .hero-quote-box{
+    margin-bottom:1.4rem;
+  }
+
+  .hero-quote-inner{
+    gap:10px;
+    padding:14px 16px;
+    border-radius:14px;
+  }
+
+  .hq-mark{
+    font-size:34px;
+  }
+
+  .hq-text{
+    font-size:13px;
+    line-height:1.7;
+  }
+
+  .hq-attr{
+    font-size:10px;
+    letter-spacing:1.4px;
+    padding-left:14px;
+  }
+}
+/* =========================================================
+   MOBILE FINAL FIX
+   ========================================================= */
+
+@media (max-width:540px){
+
+  html,
+  body{
+    overflow-x:hidden;
+    width:100%;
+  }
+
+  .container{
+    padding:0 18px;
+  }
+
+  /* HERO */
+  #hero{
+    min-height:auto;
+    padding-top:70px;
+  }
+
+  .hero-content{
+    padding:40px 18px 60px;
+  }
+
+  #hero h1{
+    font-size:34px;
+    line-height:1.2;
+  }
+
+  .hero-desc{
+    font-size:13px;
+    line-height:1.8;
+    max-width:100%;
+  }
+
+  /* QUOTE BOX */
+  .hero-quote-box{
+    width:100%;
+    max-width:100%;
+  }
+
+  .hero-quote-inner{
+    width:100%;
+    padding:14px 16px;
+    gap:10px;
+  }
+
+  .hq-text{
+    font-size:13px;
+    line-height:1.7;
+  }
+
+  .hq-mark{
+    font-size:28px;
+  }
+
+  .hq-attr{
+    padding-left:12px;
+    font-size:10px;
+  }
+
+  /* STATS */
+  .hero-stats{
+    gap:14px;
+  }
+
+  .hero-stat .num{
+    font-size:20px;
+  }
+
+  .hero-stat .lbl{
+    font-size:9px;
+  }
+
+  /* CLOCK */
+  .pk-clock-wrap{
+    width:100%;
+    padding:12px;
+  }
+
+  .pk-clock{
+    font-size:22px;
+  }
+
+  .pk-date{
+    font-size:11px;
+  }
+
+  /* MARQUEE */
+  .hero-marquee span{
+    font-size:10px;
+    padding:0 14px;
+  }
+
+  /* NAVBAR */
+  .nav-brand span{
+    font-size:15px;
+  }
+
+  .nav-bismillah{
+    font-size:12px;
+  }
+
+  /* SECTION SPACING */
+  section{
+    padding:50px 0;
+  }
+
+  /* CARDS */
+  .leader-card,
+  .person-card,
+  .prov-card,
+  .eco-card,
+  .culture-card,
+  .geo-card,
+  .weather-card,
+  .news-card,
+  .cricket-card{
+    padding:1rem;
+  }
+
+  /* TABLES */
+  .prev-table{
+    overflow-x:auto;
+  }
+
+  /* FOOTER */
+  .footer-name{
+    font-size:20px;
+  }
+
+  .db-text{
+    font-size:18px;
+  }
+
+}
+@media (max-width:540px){
+
+  .nav-bismillah{
+    text-align:center;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:12px;
+    margin:0 auto;
+  }
+
+}
+@media (max-width:540px){
+
+  .nav-bismillah{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    text-align:center;
+    width:auto;
+  }
+
 }
