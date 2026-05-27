@@ -863,27 +863,51 @@ footer > p   { font-size:13px; opacity:.45; }
   }
 
 }
+/* MOBILE NAV FINAL FIX */
 @media (max-width:540px){
 
-  .nav-bismillah{
-    text-align:center;
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:12px;
-    margin:0 auto;
+  .nav-inner{
+    position:relative;
   }
 
-}
-@media (max-width:540px){
+  .nav-brand{
+    position:relative;
+    z-index:2;
+  }
+
+  .nav-toggle{
+    position:relative;
+    z-index:2;
+  }
 
   .nav-bismillah{
+
     position:absolute;
     left:50%;
     transform:translateX(-50%);
+
+    max-width:52%;
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
     text-align:center;
-    width:auto;
+
+    font-size:11px;
+    letter-spacing:.2px;
+
+    padding:0 4px;
+  }
+
+}
+
+/* EXTRA SMALL DEVICES */
+@media (max-width:380px){
+
+  .nav-bismillah{
+    max-width:46%;
+    font-size:10px;
   }
 
 }
