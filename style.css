@@ -911,3 +911,137 @@ footer > p   { font-size:13px; opacity:.45; }
   }
 
 }
+/* =========================
+   DID YOU KNOW
+========================= */
+
+.dyk-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:1rem;
+}
+
+.dyk-card{
+  background:white;
+  border-radius:18px;
+  padding:1.5rem;
+  border:1px solid rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.dyk-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 40px rgba(0,0,0,0.12);
+}
+
+.dyk-icon{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+.dyk-card h3{
+  color:#0b6e4f;
+  margin-bottom:10px;
+}
+
+/* =========================
+   QUOTES
+========================= */
+
+#quotes-section{
+  background:#074a35 !important;
+}
+
+#quotes-section .section-title{
+  color:white;
+}
+
+#quotes-section .section-label{
+  color:#c8a84b;
+}
+
+.quotes-slider{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1rem;
+}
+
+.quote-card{
+  background:rgba(255,255,255,0.08);
+  border-radius:18px;
+  padding:1.5rem;
+  border:1px solid rgba(255,255,255,0.12);
+
+  min-height:240px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+
+  transition:0.3s ease;
+}
+
+.quote-card:hover{
+  transform:translateY(-6px);
+  background:rgba(255,255,255,0.12);
+  box-shadow:0 12px 40px rgba(0,0,0,0.18);
+}
+
+.quote-mark{
+  font-size:40px;
+  color:#c8a84b;
+}
+
+.quote-text{
+  color:white;
+  margin:10px 0;
+
+  line-height:1.9;
+
+  font-size:15px;
+
+  flex:1;
+}
+
+.quote-author{
+  color:#c8a84b;
+  font-size:13px;
+  font-weight:600;
+
+  margin-top:18px;
+
+  display:block;
+}
+
+/* =========================
+   RECORDS
+========================= */
+
+.records-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:1rem;
+}
+
+.record-card{
+  background:white;
+  border-radius:18px;
+  padding:1.5rem;
+  border:1px solid rgba(0,0,0,0.08);
+  position:relative;
+  overflow:hidden;
+}
+
+.record-number{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:42px;
+  color:rgba(11,110,79,0.08);
+  font-weight:700;
+}
+
+.record-card h3{
+  color:#0b6e4f;
+  margin-bottom:10px;
+}
