@@ -445,3 +445,125 @@ function initNavToggle() {
     });
   }
 }
+
+// =========================
+// FACTS
+// =========================
+
+async function loadFacts(){
+
+  const response = await fetch("facts.json?v=" + Date.now());
+
+  const facts = await response.json();
+
+  const container =
+  document.getElementById("factsContainer");
+
+  facts
+.sort(() => Math.random() - 0.5)
+.slice(0,3)
+.forEach(fact => {
+
+    container.innerHTML += `
+    
+      <div class="dyk-card">
+
+        <div class="dyk-icon">${fact.icon}</div>
+
+        <h3>${fact.title}</h3>
+
+        <p>${fact.desc}</p>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+loadFacts();
+
+
+// =========================
+// QUOTES
+// =========================
+
+async function loadQuotes(){
+
+  const response = await fetch("quotes.json?v=" + Date.now());
+
+  const quotes = await response.json();
+
+  const container =
+  document.getElementById("quotesContainer");
+
+   quotes
+.sort(() => Math.random() - 0.5)
+.slice(0,3)
+.forEach(quote => {
+
+    container.innerHTML += `
+
+      <div class="quote-card">
+
+        <div class="quote-mark">❝</div>
+
+        <p class="quote-text">
+          ${quote.text}
+        </p>
+
+        <span class="quote-author">
+          — ${quote.author}
+        </span>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+loadQuotes();
+
+
+// =========================
+// RECORDS
+// =========================
+
+async function loadRecords(){
+
+  const response = await fetch("records.json?v=" + Date.now()) ;
+
+  const records = await response.json();
+
+  const container =
+  document.getElementById("recordsContainer");
+
+  records
+.sort(() => Math.random() - 0.5)
+.slice(0,3)
+.forEach(record => {
+
+    container.innerHTML += `
+
+      <div class="record-card">
+
+        <div class="record-number">
+          ${record.number}
+        </div>
+
+        <h3>${record.title}</h3>
+
+        <p>${record.desc}</p>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+loadRecords();
